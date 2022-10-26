@@ -2,7 +2,8 @@ from asyncio import constants
 import pygame
 import random
 from dino_runner.components.obstacles.cactus import Cactus_Small, Cactus_Large
-from dino_runner.utils.constants import LARGE_CACTUS, SMALL_CACTUS
+from dino_runner.components.obstacles.bird import Bird
+from dino_runner.utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD
 
 class ObstacleManager:
     def __init__(self):
@@ -21,10 +22,10 @@ class ObstacleManager:
                 if self.leveldificult == 5:
                     self.obstacles.append(Cactus_Large(LARGE_CACTUS))            
                     print ("large")
-                if self.leveldificult == 6:
+                elif self.leveldificult == 6:
                     self.obstacles.append(Cactus_Small(SMALL_CACTUS))
                     print ("small")
-
+          
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
 
