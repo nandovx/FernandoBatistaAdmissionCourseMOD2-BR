@@ -7,7 +7,7 @@ class Bird_High(Obstacle):
         self.type = 0
         self.is_animated = True
         super().__init__(image, self.type, self.is_animated)
-        self.rect.y = 250
+        self.rect.y = 240
 
 class Bird_Low(Obstacle):
     def __init__(self, image):
