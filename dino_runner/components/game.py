@@ -18,6 +18,7 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.score = 0
+        self.high_score = 0
         self.death_count = 0
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -52,9 +53,13 @@ class Game:
         self.update_score()
 
     def update_score(self):
-        self.score += 1
+        if self.score == self.high_score:
+            self.high_score += 1
+        if self.score > self.high_score:
+            self.high_score = self.score
         if self.score % 100 == 0:
             self.game_speed += 5
+        self.score += 1
         
 
     def draw(self):
@@ -78,7 +83,8 @@ class Game:
 
     def draw_score(self):
         font = pygame.font.Font(FONT_STYLE, 22)
-        self.format_text(f"Score: {self.score}", 1000, 50, font)
+        self.format_text(f"Score: {self.score}", 1000, 80, font)
+        self.format_text(f"HighScore: {self.high_score}", 1000, 50, font)
         
     def handle_events_on_menu(self):
         for event in pygame.event.get():
@@ -109,8 +115,9 @@ class Game:
         else:
             self.screen.blit(ICON, (half_screen_width - 50, half_screen_height - 140))
             self.format_text("Press any key to restart", half_screen_width, half_screen_height, font)
-            self.format_text(f"Score: {self.score}", half_screen_width, half_screen_height + 30, font)
-            self.format_text(f"Deaths: {self.death_count}", half_screen_width, half_screen_height + 60, font)
+            self.format_text(f"HighScore: {self.high_score}", half_screen_width, half_screen_height + 30, font)
+            self.format_text(f"Score: {self.score}", half_screen_width, half_screen_height + 60, font)
+            self.format_text(f"Deaths: {self.death_count}", half_screen_width, half_screen_height + 120, font)
                                   
         pygame.display.update()
         self.handle_events_on_menu()

@@ -14,4 +14,4 @@ class Bird_Low(Obstacle):
         self.type = 0
         self.is_animated = True
         super().__init__(image, self.type, self.is_animated)
-        self.rect.y = 287
+        self.rect.y = 290
