@@ -2,8 +2,16 @@ import random
 
 from dino_runner.components.obstacles.obstacles import Obstacle
 
-class Bird(Obstacle):
+class Bird_High(Obstacle):
     def __init__(self, image):
-        self.type = image[0] 
-        super().__init__(image, self.type)
-        self.rect.y = 200
+        self.type = 0
+        self.is_animated = True
+        super().__init__(image, self.type, self.is_animated)
+        self.rect.y = 250
+
+class Bird_Low(Obstacle):
+    def __init__(self, image):
+        self.type = 0
+        self.is_animated = True
+        super().__init__(image, self.type, self.is_animated)
+        self.rect.y = 287
