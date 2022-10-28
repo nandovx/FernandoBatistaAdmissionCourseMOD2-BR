@@ -3,7 +3,7 @@ import pygame
 import random
 from dino_runner.components.obstacles.cactus import Cactus_Small, Cactus_Large
 from dino_runner.components.obstacles.bird import Bird_High, Bird_Low
-from dino_runner.utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD
+from dino_runner.utils.constants import LARGE_CACTUS, SMALL_CACTUS, BIRD, DEFAULT_TYPE
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 class ObstacleManager:
@@ -44,8 +44,13 @@ class ObstacleManager:
                     game.playing = False
                     game.death_count += 1
                     break
-                else:
+                elif game.player.shield:
                     self.obstacles.remove(obstacle)
+                elif game.player.hammer:
+                    self.obstacles.remove(obstacle)
+                    game.player.has_power_up = False
+                    game.player.hammer = False
+                    game.player.type = DEFAULT_TYPE
 
     def draw(self, screen):
         for obstacle in self.obstacles:

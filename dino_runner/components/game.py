@@ -56,7 +56,7 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.update_score()
-        self.power_up_manager.update(self.score, self.game_speed, self.player)
+        self.power_up_manager.update(self)
 
     def update_score(self):
         if self.score == self.high_score:
@@ -67,7 +67,7 @@ class Game:
         elif self.score < self.high_score:
             self.score += 1
         if self.score % 100 == 0:
-            self.game_speed += 5
+            self.game_speed += 2
         
         self.draw_score()
         
@@ -106,6 +106,8 @@ class Game:
                 self.format_text(f"{self.player.type.capitalize()} enabled for {time_to_show} seconds.", 500, 40, font)
             else:
                 self.player.has_power_up = False
+                self.player.shield = False
+                self.player.hammer = False
                 self.player.type = DEFAULT_TYPE
 
     def handle_events_on_menu(self):
